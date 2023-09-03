@@ -4,6 +4,10 @@
 
 @inject PrioridadesBLL prioridadesBLL;
 
+@code {
+    private bool descripcionExistente = false;
+}
+
 <EditForm Model="prioridades" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
     <div class="card">
@@ -20,6 +24,10 @@
                 <label>Descripcion</label>
                 <InputTextArea @bind-Value="prioridades.Descripcion" class="form-control"></InputTextArea>
                 <ValidationMessage For="@(() => prioridades.Descripcion)" />
+                @if (descripcionExistente)
+                {
+                    <p class="text-danger">Ya existe una Prioridad con esta descripción.</p>
+                }
             </div>
             <div>
                 <label>Dias compromiso</label>
@@ -53,15 +61,28 @@
         var prioridadEncontrada = prioridadesBLL.Buscar(prioridades.PrioridadId);
 
         if (prioridadEncontrada != null)
+        //asignar la instancia si encontramos la PrioridadId que buscamos
             this.prioridades = prioridadEncontrada;
     }
     public bool Validar()
     {
+        descripcionExistente = false; 
+
+        // Verificar si la descripción ya existe en otra Prioridad
+        var prioridadExistente = prioridadesBLL.BuscarPorDescripcion(prioridades.Descripcion);
+
+        if (prioridadExistente != null && prioridadExistente.PrioridadId != prioridades.PrioridadId)
+        {
+            // Ya existe una Prioridad con la misma descripción
+            descripcionExistente = true;
+            return false;
+        }
         return !string.IsNullOrEmpty(prioridades.Descripcion) && !(prioridades.DiasCompromiso < 0);
     }
     public void Nuevo()
     {
         this.prioridades = new Prioridades();
+        descripcionExistente = false;
     }
     public void Guardar()
     {
@@ -77,6 +98,4 @@
             Nuevo();
         }
     }
-
-
 }

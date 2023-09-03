@@ -19,8 +19,7 @@ namespace RegistroDePrioridades.BLL
         public bool Insertar(Prioridades prioridades)
         {
             contexto.Prioridades.Add(prioridades);
-            int insertado = contexto.SaveChanges();
-            return insertado > 0;
+            return contexto.SaveChanges() > 0;
         }
         public bool Modificar(Prioridades prioridades)
         {
@@ -31,15 +30,21 @@ namespace RegistroDePrioridades.BLL
         public bool Guardar(Prioridades prioridades)
         {
             if (!Existe(prioridades.PrioridadId))
-                return Insertar(prioridades);
+                return this.Insertar(prioridades);
             else
-                return Modificar(prioridades);
+                return this.Modificar(prioridades);
         }
         public bool Eliminar(Prioridades prioridades)
         {
             contexto.Entry(prioridades).State = EntityState.Deleted;
             return contexto.SaveChanges() > 0;
         }
+
+        public Prioridades BuscarPorDescripcion(string descripcion)
+        {
+            return contexto.Prioridades.SingleOrDefault(p => p.Descripcion == descripcion);
+        }
+
         public Prioridades? Buscar(int PrioridadId)
         {
             return contexto.Prioridades

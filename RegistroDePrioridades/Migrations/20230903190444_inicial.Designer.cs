@@ -10,7 +10,7 @@ using RegistroDePrioridades.DAL;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230902001734_inicial")]
+    [Migration("20230903190444_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
