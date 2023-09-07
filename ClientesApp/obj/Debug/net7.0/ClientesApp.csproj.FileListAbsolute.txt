@@ -1,0 +1,7 @@
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.AssemblyInfoInputs.cache
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.AssemblyInfo.cs
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.csproj.CoreCompileInputs.cache
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.RazorAssemblyInfo.cache
+C:\Blazor\ClientesApp\obj\Debug\net7.0\ClientesApp.RazorAssemblyInfo.cs
